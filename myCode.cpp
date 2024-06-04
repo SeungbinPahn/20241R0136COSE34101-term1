@@ -4,9 +4,8 @@
 #include <pthread.h>
 #include <time.h>
 
-#define TIME_QUANTUM 3  // Round Robin의 타임 퀀텀
+#define TIME_QUANTUM 3
 
-// 프로세스 구조체 정의
 typedef struct {
     int pid;         // 프로세스 ID
     int arrival;     // 도착 시간
