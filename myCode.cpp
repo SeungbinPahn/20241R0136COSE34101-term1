@@ -33,7 +33,7 @@ int compare_fcfs(const void *a, const void *b) {
     return p1->arrival - p2->arrival;
 }
 
-// 프로세스 비교 함수 (SJF에 사용)
+// 비교 함수 (SJF용)
 int compare_sjf(const void *a, const void *b) {
     Process *p1 = (Process *)a;
     Process *p2 = (Process *)b;
@@ -43,7 +43,7 @@ int compare_sjf(const void *a, const void *b) {
     return p1->burst - p2->burst;
 }
 
-// 프로세스 비교 함수 (Priority에 사용)
+// 비교 함수 (Priority용)
 int compare_priority(const void *a, const void *b) {
     Process *p1 = (Process *)a;
     Process *p2 = (Process *)b;
