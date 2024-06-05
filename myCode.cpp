@@ -1,5 +1,7 @@
 //job queue/ready queue 만들든 while -> 어떻게 수정했는지 넣을 것
-
+//cd 20241R0136COSE34101-term1
+//g++ -o myCode myCode.cpp -lpthread
+//./myCode
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
