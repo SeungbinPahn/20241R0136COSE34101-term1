@@ -53,7 +53,7 @@ int compare_priority(const void *a, const void *b) {
     return p1->priority - p2->priority;
 }
 
-// 프로세스 생성 함수
+// 프로세스 생성
 void create_processes(Process *processes, int n) {
     srand(time(NULL));
     for (int i = 0; i < n; i++) {
@@ -67,7 +67,7 @@ void create_processes(Process *processes, int n) {
     }
 }
 
-// 스케줄링 함수 (FCFS)
+// FCFS
 void schedule_fcfs(Process *processes, int n) {
     qsort(processes, n, sizeof(Process), compare_fcfs);
     int current_time = 0;
@@ -81,7 +81,7 @@ void schedule_fcfs(Process *processes, int n) {
     }
 }
 
-// 스케줄링 함수 (SJF)
+// SJF
 void schedule_sjf(Process *processes, int n) {
     qsort(processes, n, sizeof(Process), compare_sjf);
     int current_time = 0;
@@ -95,7 +95,7 @@ void schedule_sjf(Process *processes, int n) {
     }
 }
 
-// 스케줄링 함수 (Preemptive SJF)
+// Preemptive SJF
 void schedule_psjf(Process *processes, int n) {
     int current_time = 0;
     int completed = 0;
@@ -122,7 +122,7 @@ void schedule_psjf(Process *processes, int n) {
     }
 }
 
-// 스케줄링 함수 (Priority)
+// Priority
 void schedule_priority(Process *processes, int n) {
     qsort(processes, n, sizeof(Process), compare_priority);
     int current_time = 0;
@@ -136,7 +136,7 @@ void schedule_priority(Process *processes, int n) {
     }
 }
 
-// 스케줄링 함수 (Preemptive Priority)
+// Preemptive Priority
 void schedule_ppriority(Process *processes, int n) {
     int current_time = 0;
     int completed = 0;
@@ -163,7 +163,7 @@ void schedule_ppriority(Process *processes, int n) {
     }
 }
 
-// 스케줄링 함수 (Round Robin)
+// Round Robin
 void schedule_rr(Process *processes, int n) {
     int current_time = 0;
     int completed = 0;
@@ -185,7 +185,7 @@ void schedule_rr(Process *processes, int n) {
     }
 }
 
-// 스레드 함수 (프로세스 실행)
+// 스레드 실행
 void* execute_process(void* arg) {
     Process *p = (Process *)arg;
 
@@ -199,7 +199,7 @@ void* execute_process(void* arg) {
     pthread_exit(NULL);
 }
 
-// 평가 함수 (평균 대기 시간, 평균 턴어라운드 시간 계산)
+// 평가
 void evaluate(Process *processes, int n) {
     double total_waiting = 0, total_turnaround = 0;
     for (int i = 0; i < n; i++) {
@@ -225,7 +225,7 @@ int main() {
 
     create_processes(processes_fcfs, n);
 
-    // SJF, Preemptive SJF, Priority, Preemptive Priority, Round Robin 스케줄링을 위해 프로세스 복사
+    // 프로세스 복사
     for (int i = 0; i < n; i++) {
         processes_sjf[i] = processes_fcfs[i];
         processes_psjf[i] = processes_fcfs[i];
@@ -240,7 +240,7 @@ int main() {
         printf("%d\t%d\t%d\t%d\n", processes_fcfs[i].pid, processes_fcfs[i].arrival, processes_fcfs[i].burst, processes_fcfs[i].priority);
     }
 
-    // FCFS 스케줄링
+    // FCFS
     schedule_fcfs(processes_fcfs, n);
     printf("\nScheduled Processes (FCFS):\n");
     printf("PID\tArrival\tBurst\tWaiting\tTurnaround\n");
@@ -255,7 +255,7 @@ int main() {
 
     evaluate(processes_fcfs, n);
 
-    // SJF 스케줄링
+    // SJF
     schedule_sjf(processes_sjf, n);
     printf("\nScheduled Processes (SJF):\n");
     printf("PID\tArrival\tBurst\tWaiting\tTurnaround\n");
@@ -270,7 +270,7 @@ int main() {
 
     evaluate(processes_sjf, n);
 
-    // Preemptive SJF 스케줄링
+    // Preemptive SJF
     schedule_psjf(processes_psjf, n);
     printf("\nScheduled Processes (Preemptive SJF):\n");
     printf("PID\tArrival\tBurst\tWaiting\tTurnaround\n");
@@ -285,7 +285,7 @@ int main() {
 
     evaluate(processes_psjf, n);
 
-    // Priority 스케줄링
+    // Priority
     schedule_priority(processes_priority, n);
     printf("\nScheduled Processes (Priority):\n");
     printf("PID\tArrival\tBurst\tPriority\tWaiting\tTurnaround\n");
@@ -300,7 +300,7 @@ int main() {
 
     evaluate(processes_priority, n);
 
-    // Preemptive Priority 스케줄링
+    // Preemptive Priority
     schedule_ppriority(processes_ppriority, n);
     printf("\nScheduled Processes (Preemptive Priority):\n");
     printf("PID\tArrival\tBurst\tPriority\tWaiting\tTurnaround\n");
@@ -315,7 +315,7 @@ int main() {
 
     evaluate(processes_ppriority, n);
 
-    // Round Robin 스케줄링
+    // Round Robin
     schedule_rr(processes_rr, n);
     printf("\nScheduled Processes (Round Robin):\n");
     printf("PID\tArrival\tBurst\tPriority\tWaiting\tTurnaround\n");
