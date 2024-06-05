@@ -1,3 +1,5 @@
+//job queue/ready queue 만들든 while -> 어떻게 수정했는지 넣을 것
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
