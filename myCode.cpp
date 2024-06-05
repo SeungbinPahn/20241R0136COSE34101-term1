@@ -14,7 +14,7 @@ typedef struct {
     int priority;    // 우선 순위
     int waiting;     // 대기 시간
     int turnaround;  // 턴어라운드 시간
-    int remaining;   // 남은 버스트 시간 (Round Robin에 사용)
+    int remaining;   // 남은 버스트 시간
 } Process;
 
 // 간트차트 항목 구조체 정의
@@ -129,8 +129,10 @@ void schedule_sjf(Process *processes, int n) {
 
     while (completed < n) {
         int shortest_index = -1;
+        int shortest_burst = __INT_MAX__;
         for (int i = 0; i < n; i++) {
-            if (processes[i].arrival <= current_time && processes[i].remaining > 0 && processes[shortest_index].remaining > processes[i].remaining) {
+            if (processes[i].arrival <= current_time && processes[i].remaining > 0 && processes[i].remaining < shortest_burst) {
+                shortest_burst = processes[i].remaining;
                 shortest_index = i;
             }
         }
@@ -213,8 +215,10 @@ void schedule_priority(Process *processes, int n) {
 
     while (completed < n) {
         int highest_index = -1;
+        int highest_priority = __INT_MAX__;
         for (int i = 0; i < n; i++) {
-            if (processes[i].arrival <= current_time && processes[i].remaining > 0 && processes[i].priority < processes[highest_index].priority) {
+            if (processes[i].arrival <= current_time && processes[i].remaining > 0 && processes[i].priority < highest_priority) {
+                highest_priority = processes[i].priority;
                 highest_index = i;
             }
         }
