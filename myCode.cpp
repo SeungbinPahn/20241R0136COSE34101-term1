@@ -81,7 +81,7 @@ void schedule_fcfs(Process *processes, int n) {
     }
 }
 
-// SJF
+// SJF while문으로 current time 늘이며 arrival time 관리
 void schedule_sjf(Process *processes, int n) {
     qsort(processes, n, sizeof(Process), compare_sjf);
     int current_time = 0;
