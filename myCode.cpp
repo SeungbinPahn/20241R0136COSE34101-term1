@@ -163,7 +163,7 @@ void schedule_ppriority(Process *processes, int n) {
     }
 }
 
-// Round Robin
+// Round Robin 구조체 복사본을 포인터 - 큐로
 void schedule_rr(Process *processes, int n) {
     int current_time = 0;
     int completed = 0;
