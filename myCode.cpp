@@ -83,14 +83,14 @@ void print_gantt_chart() {
     int total_time = gantt_chart[gantt_index-1].end;
     
     printf ("    ");
-    for (int i = 1; i <= total_time; i++) {
+    for (int i = 0; i <= total_time; i++) {
         printf(" %2d ", i);
     }
     printf("\n");
 
     for (int i = 0; i < gantt_index; i++) {
         printf(" P%d ", gantt_chart[i].pid);
-        for (int j = 1; j < total_time; j++) {
+        for (int j = 0; j < total_time; j++) {
             if (gantt_chart[i].start <= j && j < gantt_chart[i].end) printf("====");
             else printf("    ");
         }
@@ -173,8 +173,8 @@ void schedule_psjf(Process *processes, int n) {
         int shortest_index = -1;
         int shortest_burst = __INT_MAX__;
         for (int i = 0; i < n; i++) {
-            if (processes[i].arrival <= current_time && processes[i].remaining > 0 && processes[i].remaining < shortest_burst) {
-                shortest_burst = processes[i].remaining;
+            if (processes[i].arrival <= current_time && processes[i].remaining > 0 && processes[i].burst < shortest_burst) {
+                shortest_burst = processes[i].burst;
                 shortest_index = i;
             }
         }
@@ -206,7 +206,6 @@ void schedule_psjf(Process *processes, int n) {
     }
     print_gantt_chart();
 }
-
 // 우선순위 스케줄링 함수
 void schedule_priority(Process *processes, int n) {
     gantt_index = 0;
